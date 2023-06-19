@@ -31,6 +31,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <!-- NAVLINKS -->
+          <!-- NOTE page navigation.... we'll get into this later -->
           <a href="#/about" class="nav-link">About</a>
         </div>
       </div>
@@ -45,21 +46,31 @@
   <main class="container-fluid">
     <div class="row">
       <div class="col-12 p-5">
+        <!-- NOTE when the button inside of our form is clicked, the form submits if it passes our input validators -->
         <form onsubmit="app.PlayersController.createPlayer(event)">
+          <!-- NOTE label have a for property that should match an ID on an input field -->
           <label for="playerName">Player Name</label>
+          <!-- NOTE type determines what they can put inside of our input field -->
+          <!-- NOTE required says that the user has to put something inside of this input in order to submit our form -->
+          <!-- NOTE minlength says that the text put into this input field has to 3 characters, maxlength says that the text can not be longer than 20 characters -->
+          <!-- NOTE name is what allows us to pull values out of each input field in javascript -->
           <input id="playerName" type="text" required minlength="3" maxlength="20" name="name">
           <label for="playerImg">Player Image</label>
           <input id="playerImg" type="url" required maxlength="200" name="imgUrl">
 
 
           <div>
+            <!-- NOTE type submit will submit the form that this button is inside of -->
             <button type="submit">Submit Form</button>
           </div>
         </form>
       </div>
     </div>
+
+    <!-- NOTE where we draw our players -->
     <section class="row" id="players">
 
+      <!-- NOTE this template has been abstracted out to our Player Class -->
       <!-- STUB player template -->
       <!-- <div class="col-12 col-md-6">
         <div>
@@ -91,6 +102,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"
     integrity="sha256-hw7v8jZF/rFEdx1ZHepT4D73AFTHLu/P9kEyrNesRyc=" crossorigin="anonymous"></script>
 
+  <!-- NOTE type module is what allows us to import and export code -->
   <script src="app/App.js" type="module"></script>
 
 </body>
