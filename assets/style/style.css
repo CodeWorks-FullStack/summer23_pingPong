@@ -1,0 +1,14 @@
+/* BASIC STYLES HERE */
+
+
+.player-img{
+  max-height: 30vh;
+}
+
+label{
+  display: block;
+}
+
+input{
+  width: 80%;
+}

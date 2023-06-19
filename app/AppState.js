@@ -1,0 +1,43 @@
+import { Player } from "./models/Player.js"
+import { Value } from "./models/Value.js"
+import { EventEmitter } from "./utils/EventEmitter.js"
+import { isValidProp } from "./utils/isValidProp.js"
+import { loadState } from "./utils/Store.js"
+
+
+
+class ObservableAppState extends EventEmitter {
+  // REVIEW this where we store all of our global variables now
+  page = ''
+
+  /** @type {import('./models/Value.js').Value[]} */
+  values = loadState('values', [Value])
+
+  players = [
+    new Player('Jeremy', 'https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80'),
+    new Player('Miles', 'https://images.unsplash.com/photo-1581310118098-898fd1e56f23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80')
+  ]
+
+
+
+
+  // NOTE Used to load initial data
+  init() {
+
+  }
+
+}
+
+// REVIEW 🚗 goes
+export const AppState = new Proxy(new ObservableAppState(), {
+  get(target, prop) {
+    isValidProp(target, prop)
+    return target[prop]
+  },
+  set(target, prop, value) {
+    isValidProp(target, prop)
+    target[prop] = value
+    target.emit(prop, value)
+    return true
+  }
+})
